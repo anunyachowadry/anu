@@ -31,7 +31,7 @@ const signupScheema = new mongoose.Schema({
     Company: {
         type: String
     },
-    ManufacturerID: {
+    State: {
         type: String
     }
 

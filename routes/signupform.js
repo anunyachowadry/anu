@@ -24,7 +24,9 @@ const Signup = require('../models/signup')
 //         res.status(400).json({err})
 //     }    
 // })
+ 
 
+//----this is for signup get method----//
 router.get('/getsignupdetails' , async (req,res) => {
     try{
         const sinInfo = await Signup.find()
@@ -41,7 +43,8 @@ router.get('/getsignupdetails' , async (req,res) => {
 })
 
 
-//post method goes here
+//---this is for signup post method ----//
+
 router.post('/addsignupdetails', (req, res, next)=>{
     console.log("User profile is called")
 
@@ -58,6 +61,7 @@ router.post('/addsignupdetails', (req, res, next)=>{
         UserType: req.body.UserType,
         Pincode: req.body.Pincode,
         Street: req.body.Street,
+        State:req.body.State,
         Company: req.body.Company,
         ManufacturerID: req.body.ManufacturerID   
 
@@ -89,16 +93,29 @@ router.post('/addsignupdetails', (req, res, next)=>{
     });
 });
 
+//-----this is for profile edit functionality----//
 
 router.put('/editProfile/:id',async(req,res) => {
     const updates=Object.keys(req.body)   // keys will be stored in updates => req body field names.
-    const allowedUpdates= ['Firstname','Lastname','mobile','Email','Password']  // updates that are allowed
+    const allowedUpdates= [
+        'Firstname',
+        'Lastname',
+        'mobile',
+        'Email',
+        'Password',
+        'City',
+        // 'UserType',
+        'Street',
+        'State',
+        'Company',
+        // 'ManufacturerID',
+        'Pincode']  // updates that are allowed
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update)) // validating the written key in req.body with the allowedUpdates
     if(!isValidOperation) {
         return res.status(400).json({ error : 'invalid updates'})
     }
     try{  // try  catch error is to catch the errors in process
-        const signup=await Signup.findOne({id:req.params.id}) // finding the product to be updated
+        const signup = await Signup.findOne({_id:req.params.id}) // finding the product to be updated
         if(!signup){ //if user is empty it will  throw error as response
             return res.status(404).json({ message:'Invalid user'})
         }

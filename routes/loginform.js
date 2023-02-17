@@ -61,7 +61,11 @@ const signup = require('../models/signup')
                             Firstname:doc.Firstname,
                             Lastname:doc.Lastname,                          
                             mobile:doc.mobile,
-                            Address:doc.Address,
+                            Street:doc.Street,
+                            City:doc.City,
+                            State:doc.State,
+                            Pincode:doc.Pincode,
+                            UserType:doc.UserType,
                             docId:doc._id                            
                         })               
                     }

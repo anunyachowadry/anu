@@ -7,6 +7,10 @@ const bodyparser = require('body-parser')
 const signupformRoutes = require('./routes/signupform')
 const loginformRoutes = require('./routes/loginform')
 const productsRoutes = require('./routes/products')
+const dealersRoutes = require('./routes/dealers')
+const ordersRoutes = require('./routes/orders')
+const dealerproductsRoutes = require('./routes/dealerproducts')
+const placeordersRoutes = require('./routes/placeorders')
 
 
 const cors = require('cors')
@@ -31,4 +35,8 @@ app.use(cors())
 app.use('/signupform', signupformRoutes);
 app.use('/loginform', loginformRoutes);
 app.use('/products', productsRoutes);
+app.use('/dealerproducts',dealerproductsRoutes);
+app.use('/dealer',dealersRoutes);
+app.use('/order',ordersRoutes);
+app.use('/placeorders',placeordersRoutes);
 module.exports=app;
