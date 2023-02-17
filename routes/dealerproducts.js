@@ -30,43 +30,43 @@ router.get('/getproduct' , async (req,res) => {
     } 
 })
 //storage 
-const Storage = multer.diskStorage ({
-    destination: "../uploads",
-    filename:(req,file,cb) =>{
-        cb(null,file.originalname);
-    },
-});
+// const Storage = multer.diskStorage ({
+//     destination: "../uploads",
+//     filename:(req,file,cb) =>{
+//         cb(null,file.originalname);
+//     },
+// });
 // multer storage
-const upload = multer({
-    storage:Storage
-}).single('testImage')
+// const upload = multer({
+//     storage:Storage
+// }).single('testImage')
 //image post method
-router.post('/upload',(req,res)=>{
-    upload(req,res,(err)=>{
-        if(err){
-            console.log(err)
-        }
-        else{
-            const newImage = new Products ({
-                NameoftheStone:req.body.NameoftheStone,
-                Style:req.body.Style,
-                Size:req.body.Size,
-                Color:req.body.Color,
-                Dimensions:req.body.Dimensions,
-                Capacity:req.body.Capacity,
-                Weight:req.body.Weight,
-                Description:req.body.Description,
-                image:{
-                   // data:req.file.filename,
-                    contentType:'image/png'
-                }
-            })
-            newImage.save()
-            .then(()=>res.send('successfully uploaded'))
-            .catch((err)=>console.log(err));
-        }
-    })
-})
+// router.post('/upload',(req,res)=>{
+//     upload(req,res,(err)=>{
+//         if(err){
+//             console.log(err)
+//         }
+//         else{
+//             const newImage = new Products ({
+//                 NameoftheStone:req.body.NameoftheStone,
+//                 Style:req.body.Style,
+//                 Size:req.body.Size,
+//                 Color:req.body.Color,
+//                 Dimensions:req.body.Dimensions,
+//                 Capacity:req.body.Capacity,
+//                 Weight:req.body.Weight,
+//                 Description:req.body.Description,
+//                 image:{
+//                    // data:req.file.filename,
+//                     contentType:'image/png'
+//                 }
+//             })
+//             newImage.save()
+//             .then(()=>res.send('successfully uploaded'))
+//             .catch((err)=>console.log(err));
+//         }
+//     })
+// })
 // get product method
 router.get('/getimage', async (req,res) =>{ 
     try{      
