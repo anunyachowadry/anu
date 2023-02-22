@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 
 const loginSchema = new mongoose.Schema({
   
-    Email: {
+    email: {
         type: String
     },
-    Password: {
+    password: {
         type: String
     },
 })

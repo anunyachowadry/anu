@@ -38,14 +38,14 @@ const signup = require('../models/signup')
 
     //login compare
     router.post('/addlogin',async(req,res,next)=>{
-        var Email = req.body.Email ;
+        var email = req.body.email ;
         
-        console.log(Email)
-        signup.findOne({Email:Email}).select().exec().then( doc =>{
-            console.log(Email)  
+        console.log(email)
+        signup.findOne({Email:email}).select().exec().then( doc =>{
+            console.log(email)  
              
-             var em = req.body.Email;
-             var pass = req.body.Password;
+             var em = req.body.email;
+             var pass = req.body.password;
              console.log(em)
              console.log(pass)
              console.log(doc)
