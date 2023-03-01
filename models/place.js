@@ -6,8 +6,8 @@ const subObj = mongoose.Schema({
 	  qnt: {type: Number, required:true}, //required: true},
       price: { type: Number, required:true},
       imgurl:{type: String},
-      grandtotal:{type:Number,required:true},
-      Totalprice:{type:Number,required:true},
+//       grandtotal:{type:Number,required:true},
+//       Totalprice:{type:Number,required:true},
       prodId:{type:String,required:true}
 	//required: true }
        })
@@ -30,15 +30,8 @@ const placeSchema = mongoose.Schema({
        Email:{type:String},
        City:{type:String},
        State:{type:String},
-       Address:{type:String},
-       grandtotal:{type:Number},
-// cartinformation: [subObj ]
-    
-       OrderItems: [subObj],
-      //  OrderStatus:{type: String, required:true},
-      //  OrderDate:{type: String, required: true},
-    //   /*  TotalAmount:{type: String, reqired: true}, */
-      //  OrderId:{type: String, reqired: true},
+       Area:{type:String},    
+       OrderItems: [subObj]   
        
        
 });

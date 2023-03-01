@@ -15,7 +15,7 @@ router.post('/post', (req, res, next)=>{
                   Firstname:req.body.Firstname,
                   Lastname:req.body.Lastname,
                   PhoneNumber:req.body.PhoneNumber,
-                  Address:req.body.Address,
+                  Area:req.body.Area,
                   City:req.body.City,
                   State:req.body.State,
                   Email:req.body.Email,

@@ -7,25 +7,6 @@ const bcrypt = require('bcryptjs');
 
 const Signup = require('../models/signup')
 
-// router.post('/addsignupdetails' , async (req,res) => {
-//     const signup = new Signup(req.body)
-//     bcrypt.hash(req.body.Password, 10, function(err, hash) {
-//         // Store hash in your password DB.
-//         console.log(hash); 
-//     });
-//     try{
-//         const sinInfo = await signup.save()
-         
-//         res.status(201).json({
-//             SignupInfo:sinInfo
-//         })
-//     }catch(err){
-//         console.log(err)
-//         res.status(400).json({err})
-//     }    
-// })
- 
-
 //----this is for signup get method----//
 router.get('/getsignupdetails' , async (req,res) => {
     try{
@@ -50,10 +31,10 @@ router.post('/addsignupdetails', (req, res, next)=>{
 
     const signup = new Signup({
         _id: new mongoose.Types.ObjectId,
-       // username: req.body.username,
+       
         Password: req.body.Password,
         mobile: req.body.mobile,
-        // address:  req.body.address,
+      
         Firstname: req.body.Firstname,
         Lastname: req.body.Lastname,
         City:req.body.City,

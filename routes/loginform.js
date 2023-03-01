@@ -7,21 +7,6 @@ const bcrypt = require('bcryptjs')
 
 const signup = require('../models/signup')
 
-// router.post('/addlogin', async (req, res) => {
-//     const login = new Login(req.body)
-
-//      try{
-//         const loginInfo = await login.save()
-//         res.status(201).json({
-//              LoginInfo:loginInfo
-//     })
-
-//      }catch(err){
-//          console.log(err)
-//          res.status(400).json({err})
-//      }
-// })
-
     router.get('/getlogin/:key', async (req, res) => {
         const filter = req.params.key
         try {
@@ -136,9 +121,5 @@ const signup = require('../models/signup')
           res.status(400).json({err})
       } 
     })
-
-
-
-
 
 module.exports = router
