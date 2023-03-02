@@ -88,24 +88,20 @@ router.get('/getAllOrders/:UserName', (req, res, next)=>{
              res.status(200).json({
               count: docs.length,
               orders: docs.map(doc =>{
-                       return{
-                           _id: doc._id,
-                          OrderStatus:doc.OrderStatus,
-                          OrderDate: doc.OrderDate,
-                         
-                          OrderData: doc,
-                    
-                       }     
-
-              })
-             });
-         })
+                return{
+                   _id: doc._id,
+                    OrderStatus:doc.OrderStatus,
+                    OrderDate: doc.OrderDate,
+                    OrderData: doc,
+             }  
+    })
+});
+})
          .catch(err => {
              res.status(500).json({
                 error: err
              });
-         });
-   
+         });  
 
 });
 module.exports=router

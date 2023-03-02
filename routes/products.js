@@ -34,9 +34,9 @@ router.get('/getproduct' , async (req,res) => {
     }   
 })
 router.delete('/deleteProduct/:Number' , async (req,res) => {
-    const productid = req.params.Number
+    const productid = req.params.prodId
   try{
-      const itemInfo = await Product.deleteOne({Number : productid})
+      const itemInfo = await Product.deleteOne({prodId : productid})
       res.status(201).json({ 
           message: 'Product has been deleted successfully', itemInfo
       })
@@ -49,7 +49,7 @@ router.delete('/deleteProduct/:Number' , async (req,res) => {
 
 router.put('/editProduct/:id',async(req,res) => {
     const updates=Object.keys(req.body)   // keys will be stored in updates => req body field names.
-    const allowedUpdates= ['image','Number','Name','Description','Quantity','Price']  // updates that are allowed
+    const allowedUpdates= ['imgurl','prodId','name','Description','qnt','price']  // updates that are allowed
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update)) // validating the written key in req.body with the allowedUpdates
     if(!isValidOperation) {
         return res.status(400).json({ error : 'invalid updates'})

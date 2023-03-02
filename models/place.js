@@ -2,22 +2,12 @@ const mongoose = require('mongoose');
 
 const subObj = mongoose.Schema({
 
-      name: { type: String, required:true}, //required: true },
-	  qnt: {type: Number, required:true}, //required: true},
+      name: { type: String, required:true}, 
+      qnt: {type: Number, required:true}, 
       price: { type: Number, required:true},
       imgurl:{type: String},
-//       grandtotal:{type:Number,required:true},
-//       Totalprice:{type:Number,required:true},
       prodId:{type:String,required:true}
-	//required: true }
-       })
-
-    //    const address = mongoose.Schema({
-    //         Streetname:{type:String, required:true},
-    //         City:{type:String, required:true},
-    //         Country:{type: String, required:true},
-    //          ZIP: {type: Number, required:true}
-    //   })
+})  
        
 
 const placeSchema = mongoose.Schema({
@@ -31,10 +21,9 @@ const placeSchema = mongoose.Schema({
        City:{type:String},
        State:{type:String},
        Area:{type:String},    
-       OrderItems: [subObj]   
-       
-       
-});
-
+       OrderItems: [subObj] 
+},{
+timestamps:true
+}); 
    
 module.exports = mongoose.model('place', placeSchema);
