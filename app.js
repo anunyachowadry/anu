@@ -11,7 +11,7 @@ const dealersRoutes = require('./routes/dealers')
 const ordersRoutes = require('./routes/orders')
 const shippersRoutes = require('./routes/shippers')
 const rawproductRoutes = require('./routes/rawproduct')
-
+const manufacturerRoutes = require('./routes/manufacturer')
 const placeordersRoutes = require('./routes/placeorders')
 
 const cors = require('cors')
@@ -37,6 +37,7 @@ app.use('/products', productsRoutes);
 app.use('/raw', rawproductRoutes);
 app.use('/dealer',dealersRoutes);
 app.use('/order',ordersRoutes);
+app.use('/manufacturer',manufacturerRoutes);
 app.use('/placeorders',placeordersRoutes);
 
 module.exports=app;
