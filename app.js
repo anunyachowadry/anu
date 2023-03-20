@@ -9,13 +9,14 @@ const loginformRoutes = require('./routes/loginform')
 const productsRoutes = require('./routes/products')
 const dealersRoutes = require('./routes/dealers')
 const ordersRoutes = require('./routes/orders')
+const shippersRoutes = require('./routes/shippers')
+const rawproductRoutes = require('./routes/rawproduct')
 
 const placeordersRoutes = require('./routes/placeorders')
 
-
 const cors = require('cors')
-
-const uri = 'mongodb+srv://Mounika:shiny1502@cluster0.2dewm3d.mongodb.net/?retryWrites=true&w=majority';
+// mongodb+srv://Mounika:shiny1502@cluster0.9sbybdn.mongodb.net/?retryWrites=true&w=majority
+const uri = 'mongodb+srv://Uma:Umaraj09@cluster0.cy5cq2n.mongodb.net/?retryWrites=true&w=majority';
 mongoose.set("strictQuery", false);
  mongoose.connect(uri)
 .then(response =>{
@@ -29,11 +30,13 @@ mongoose.set("strictQuery", false);
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
 app.use(cors())
+app.use('/shippers', shippersRoutes);
 app.use('/signupform', signupformRoutes);
 app.use('/loginform', loginformRoutes);
 app.use('/products', productsRoutes);
-
+app.use('/raw', rawproductRoutes);
 app.use('/dealer',dealersRoutes);
 app.use('/order',ordersRoutes);
 app.use('/placeorders',placeordersRoutes);
+
 module.exports=app;

@@ -33,6 +33,12 @@ const signupScheema = new mongoose.Schema({
     },
     State: {
         type: String
+    },
+    Location: {
+        type: String
+    },
+    bio: {
+        type: String
     }
 
 })

@@ -3,35 +3,30 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const bodyparser = require('body-parser')
 
-const Signup = require ('../models/signup')
-const Product = require('../models/product')
 
-router.post('/addproduct' , async (req,res) => {
-    const product = new Product(req.body)
+const Raw = require('../models/raw')
+
+router.post('/addraw' , async (req,res) => {
+    const raw = new Raw(req.body)
     try{
-        const productInfo = await product.save()
+        const rawInfo = await raw.save()
         res.status(201).json({
-            ProductInfo:productInfo
+            RawInfo:rawInfo
         })
     
     }catch(err){
         console.log(err)
         res.status(400).json({err})
-    }   
+    }
+   
 })
 
-router.post('/getproduct' , async (req,res) => {
+router.get('/getraw' , async (req,res) => {
     try{
-        // Signup.find({mobile:req.body.mobile}).select().exec().then(doc =>{
-        //     console.log(doc)            
-        // })
-        const productInfo = await Product.find()
-         var product = productInfo.filter(data=>{
-            return data.mobile == req.body.mobile
-         })
+        const rawInfo = await Raw.find()
         res.status(200).json({
-            count: product.length , 
-            ProductInfo: product
+            count: rawInfo.length , 
+            RawInfo: rawInfo
         })
     }catch(err){
         console.log(err)
@@ -39,10 +34,10 @@ router.post('/getproduct' , async (req,res) => {
     }   
 })
 
-router.delete('/deleteProduct/:prodId' , async (req,res) => {
-    const productid = req.params.prodId
+router.delete('/delete/:Number' , async (req,res) => {
+    const productid = req.params.Number
   try{
-      const itemInfo = await Product.deleteOne({prodId : productid})
+      const itemInfo = await Raw.deleteOne({Number : productid})
       res.status(201).json({ 
           message: 'Product has been deleted successfully', itemInfo
       })
@@ -53,15 +48,15 @@ router.delete('/deleteProduct/:prodId' , async (req,res) => {
   } 
 })
 
-router.put('/editProduct/:id',async(req,res) => {
+router.put('/editRaw/:id',async(req,res) => {
     const updates=Object.keys(req.body)   // keys will be stored in updates => req body field names.
-    const allowedUpdates= ['imgurl','prodId','name','description','qnt','price','color','size','thick','quality','region','date']  // updates that are allowed
+    const allowedUpdates= ['Image','Number','Name','color','size','region','date']  // updates that are allowed
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update)) // validating the written key in req.body with the allowedUpdates
     if(!isValidOperation) {
         return res.status(400).json({ error : 'invalid updates'})
     }
     try{  // try  catch error is to catch the errors in process
-        const product=await Product.findOne({_id:req.params.id}) // finding the product to be updated
+        const product=await Raw.findOne({_id:req.params.id}) // finding the product to be updated
         if(!product){ //if user is empty it will  throw error as response
             return res.status(404).json({ message:'Invalid user'})
         }
@@ -73,8 +68,5 @@ router.put('/editProduct/:id',async(req,res) => {
         res.status(400).send(error)
     }
 });
-
-
-
 
 module.exports = router

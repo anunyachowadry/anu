@@ -29,25 +29,25 @@ router.get('/getdealer' , async (req,res) => {
         res.status(400).json({err})
     }  
 })
-router.delete('/deletedealer/:id' , async (req,res) => {
-    const dealerid = req.params._id
-  try{
-      const dealerInfo = await Dealer.deleteOne({_id: dealerid})
-       return res.status(201).json({ 
-          message: 'Selected dealer has been deleted successfully', dealerInfo
-      })
+// router.delete('/deletedealer/:id' , async (req,res) => {
+//     const dealerid = req.params._id
+//   try{
+//       const dealerInfo = await Dealer.deleteOne({_id: dealerid})
+//        return res.status(201).json({ 
+//           message: 'Selected dealer has been deleted successfully', dealerInfo
+//       })
   
-  }catch(err){
-      console.log(err)
-      res.status(400).json({err})
-  }
+//   }catch(err){
+//       console.log(err)
+//       res.status(400).json({err})
+//   }
  
-})
+// })
 
 
 router.put('/editdealer/:id',async(req,res) => {
     const updates=Object.keys(req.body)   // keys will be stored in updates => req body field names.
-    const allowedUpdates= ['Image','FirstName','LastName','BusinessNumber','PrimaryPhoneNumber','Address','Email','CompanyName','StoreId']  // updates that are allowed
+    const allowedUpdates= [,'Firstname','Lastname','mobile','Address','Email','Company','UserType','Location']  // updates that are allowed
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update)) // validating the written key in req.body with the allowedUpdates
     if(!isValidOperation) {
         return res.status(400).json({ error : 'invalid updates'})

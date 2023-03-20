@@ -23,8 +23,7 @@ const signup = require('../models/signup')
 
     //login compare
     router.post('/addlogin',async(req,res,next)=>{
-        var email = req.body.email ;
-        
+        var email = req.body.email ;        
         console.log(email)
         signup.findOne({Email:email}).select().exec().then( doc =>{
             console.log(email)  
@@ -37,7 +36,8 @@ const signup = require('../models/signup')
     
              if(em == doc.Email && pass == doc.Password){
                 
-                 res.status(200).json({Authentication :doc._id,
+                 res.status(200).json({
+                            Authentication :doc._id,
                              message:"success",
                              status:"success",
                             Type:doc.Type,
@@ -49,12 +49,14 @@ const signup = require('../models/signup')
                             Street:doc.Street,
                             City:doc.City,
                             State:doc.State,
+                            Location:doc.Location,
+                            bio:doc.bio,
+                            Company:doc.Company,
                             Pincode:doc.Pincode,
                             UserType:doc.UserType,
-                            docId:doc._id                            
+                            doc:doc._id                            
                         })               
-                    }
-        
+                    }        
                  else{
                  res.status(400).json({Authentication:"failed to login check email and password",
                         message:"failed",

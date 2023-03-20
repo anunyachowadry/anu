@@ -1,34 +1,40 @@
 const mongoose = require('mongoose')
 
 const dealerSchema = new mongoose.Schema({
-Image:{
-    type:String
-},
+// Image:{
+//     type:String
+// },
 
-FirstName:{
+Firstname:{
         type:String
     },
-    LastName:{
+    Lastname:{
         type:String
     },
-    CompanyName:{
+    Company:{
         type:String
     },
-    PrimaryPhoneNumber: {
+    mobile: {
         type: String
     },
-    BusinessNumber: {
-        type: String
-    },
+   
     Email: {
         type: String
     },
    Address:{
     type:String
    },
-   StoreId:{
+   Location:{
+    type:String
+   },
+    Location:{
+    type:String
+   },
+   UserType:{
     type:String
    }
+   
+   
    
    
   

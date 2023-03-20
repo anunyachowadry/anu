@@ -6,7 +6,11 @@ const subObj = mongoose.Schema({
       qnt: {type: Number, required:true}, 
       price: { type: Number, required:true},
       imgurl:{type: String},
-      prodId:{type:String,required:true}
+      prodId:{type:String,required:true},
+      Totalprice:{type:String,required:true},
+      Grandtotal:{type:String,required:true},
+      OrderStatus:{type:String,required:true},
+      ApproximateTime:{type:String,required:true}
 })  
        
 

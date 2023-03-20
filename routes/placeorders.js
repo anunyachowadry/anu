@@ -8,8 +8,7 @@ const Place = require('../models/place');
 router.post('/post', (req, res, next)=>{
       console.log('mobile place order called');
             //implementing the schema
-            const place =new Place({
-         
+            const place =new Place({         
                   _id: new mongoose.Types.ObjectId(),
                   
                   Firstname:req.body.Firstname,
@@ -19,26 +18,17 @@ router.post('/post', (req, res, next)=>{
                   City:req.body.City,
                   State:req.body.State,
                   Email:req.body.Email,
-                  Pincode:req.body.Pincode,
-                  grandtotal:req.body.grandtotal,                
+                  Pincode:req.body.Pincode,                
                   OrderItems: req.body.OrderItems,
-                //   OrderStatus: req.body.OrderStatus,
-                //   OrderDate: req.body.OrderDate,
-                //   OrderId:req.body.OrderId
-                  //useNId:req.body.token
-                       });
+                });
                 place.save()
-                .then(result =>{
-                          
-                    res.status(200).json({
-                            
+                .then(result =>{                          
+                    res.status(200).json({                            
                         message: 'created order successfully',
                         status:'success',
                         order_id: result.OrderId,
                         docId:result._id
-                    });
-
-                   // notifyclientsforplaceorder();   
+                    });  
 
                  }).catch(err=>{
                       res.status(500)
@@ -103,5 +93,25 @@ router.get('/getAllOrders/:UserName', (req, res, next)=>{
              });
          });  
 
+});
+router.put('/orderStatus/:id',async(req,res) => {
+    const updates=Object.keys(req.body)   // keys will be stored in updates => req body field names.
+    const allowedUpdates= ['OrderItems'] // updates that are allowed
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update)) // validating the written key in req.body with the allowedUpdates
+    if(!isValidOperation) {
+        return res.status(400).json({ error : 'invalid updates'})
+    }
+    try{  // try  catch error is to catch the errors in process
+        const place = await Place.findOne({_id:req.params.id}) // finding the product to be updated
+        if(!place){ //if user is empty it will  throw error as response
+            return res.status(404).json({ message:'Invalid user'})
+        }
+            updates.forEach((update) => place [update] =req.body[update]) //updating the value
+                    
+            await place.save() 
+            res.send(place)
+    } catch (error) {
+        res.status(400).send(error)
+    }
 });
 module.exports=router
