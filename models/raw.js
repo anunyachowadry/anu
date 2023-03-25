@@ -16,6 +16,9 @@ const rawSchema = new mongoose.Schema({
     size:{
         type:String
    },
+   stone:{
+    type:String
+},
    region:{
        type:String
    },

@@ -39,6 +39,23 @@ router.post('/getproduct' , async (req,res) => {
     }   
 })
 
+
+
+router.get('/products', async (req,res) =>{ 
+    try{  
+    
+         
+        
+        const products = await Product.find({_name:req.params.name})  // async makes a function return a Promise
+                                                 //await makes a function wait for a Promise
+        res.status(200).json({
+            Totalproducts : products.length,   // length of the products in schema
+            products
+        })
+    }catch (error) {
+        res.status(400).send(error)
+    } 
+    })
 router.delete('/deleteProduct/:prodId' , async (req,res) => {
     const productid = req.params.prodId
   try{

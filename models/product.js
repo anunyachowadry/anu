@@ -28,8 +28,8 @@ const productSchema = new mongoose.Schema({
     region: {
         type: String
     },   
-   qnt:{
-    type:Number
+   Quantity:{
+    type:String
    },
 
    size:{
@@ -41,6 +41,19 @@ const productSchema = new mongoose.Schema({
    mobile:{
     type:Number
    },
+   manufacturername:{
+    type:String
+   },
+   PhoneNumber:{
+    type:String
+   },
+   qnt:{
+    type:String
+   },
+   Totalprice:{
+    type:String
+   }
+
   
 })
 module.exports = mongoose.model('product' , productSchema)

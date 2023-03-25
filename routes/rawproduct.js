@@ -50,7 +50,7 @@ router.delete('/delete/:Number' , async (req,res) => {
 
 router.put('/editRaw/:id',async(req,res) => {
     const updates=Object.keys(req.body)   // keys will be stored in updates => req body field names.
-    const allowedUpdates= ['Image','Number','Name','color','size','region','date']  // updates that are allowed
+    const allowedUpdates= ['Image','Number','Name','color','size','region','date','stone']  // updates that are allowed
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update)) // validating the written key in req.body with the allowedUpdates
     if(!isValidOperation) {
         return res.status(400).json({ error : 'invalid updates'})
