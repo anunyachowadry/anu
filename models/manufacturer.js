@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const manufacturerScheema = new mongoose.Schema({
+const manufacturerSchema = new mongoose.Schema({
     Firstname: {
         type: String 
     },
@@ -31,4 +31,4 @@ const manufacturerScheema = new mongoose.Schema({
 
 })
 
-module.exports = mongoose.model('manufacturer' , manufacturerScheema)
+module.exports = mongoose.model('manufacturer' , manufacturerSchema)

@@ -1,52 +1,37 @@
 const mongoose = require('mongoose');
 
 const subObj = mongoose.Schema({
-     
-      name: { type: String, required:true}, //required: true },
-	qnt: {type: String, required:true}, //required: true},
-      price: { type: String, required:true},
-      imgurl:{type: String},
-      //  grandtotal:{type:Number,required:true},
-      //  Totalprice:{type:Number,required:true},
-      prodId:{type:String,required:true},
-      Quantity:{type:String,required:true},
-      size:{type:String,required:true},
-      date:{type:String,required:true},
-      quality:{type:String,required:true},
-      region:{type:String,required:true},
-      description:{type:String,required:true},
-      thick:{type:String,required:true},
-      OrderStatus:{type:String,required:true,default:'Placed'},
-      ApproximateTime:{type:String,required:true,default:'Arriving Within 1 Week'}
-	
-       })
 
-  
+      name: { type: String, required:true}, 
+      qnt: {type: Number, required:true}, 
+      price: { type: Number, required:true},
+      imgurl:{type: String},
+      prodId:{type:String,required:true},
+      Totalprice:{type:String,required:true},
+      Grandtotal:{type:String,required:true},
+      OrderStatus:{type:String,required:true},
+      ApproximateTime:{type:String,required:true},
+      color:{type:String,required:true},
+      manufacturername:{type:String,required:true},
+      PhoneNumber:{type:String,required:true}
+	
+})  
        
 
 const placeSchema = mongoose.Schema({
        _id: mongoose.Schema.Types.ObjectId,
-
-     Firstname:{type:String, required:true},
-      Lastname:{type:String, required:true},
-      PhoneNumber:{type: String, required:true},
-      Pincode:{type:String, required:true},
-      Email:{type:String,required:true},
-      City:{type:String,required:true},
-      State:{type:String,required:true},
-      Address:{type:String,required:true},
-
     
-       OrderItems: [subObj],
-      //  OrderStatus:{type: String, required:true},
-      //  OrderDate:{type: String, required: true},
-    //   /*  TotalAmount:{type: String, reqired: true}, */
-      //  OrderId:{type: String, reqired: true},
-       
-       
-}, {
-      timestamps: true
-});
-
+       Firstname:{type:String},
+       Lastname:{type:String},
+       PhoneNumber:{type: String},
+       Pincode:{type:String},
+       Email:{type:String},
+       City:{type:String},
+       State:{type:String},
+       Area:{type:String},    
+       OrderItems: [subObj] 
+},{
+timestamps:true
+}); 
    
-module.exports = mongoose.model('Place', placeSchema);
+module.exports = mongoose.model('place', placeSchema);
