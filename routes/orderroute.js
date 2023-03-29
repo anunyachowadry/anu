@@ -2,7 +2,7 @@ const express = require('express');
 const router =express.Router();
 const mongoose = require('mongoose');
 
-const Order = require('../Models/order');
+const Order = require('../models/order');
 
 //Firebase initialization.
 
