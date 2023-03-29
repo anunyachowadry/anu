@@ -6,7 +6,7 @@ const bodyparser = require('body-parser')
 
 
 
-const Manufacturer = require('../models/Manufacturer')
+const Manufacturer = require('../models/manufacturer')
 
 
 

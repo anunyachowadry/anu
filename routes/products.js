@@ -39,14 +39,12 @@ router.post('/getproduct' , async (req,res) => {
     }   
 })
 
-
-
 router.get('/products', async (req,res) =>{ 
     try{  
     
          
         
-        const products = await Product.find({_name:req.params.name})  // async makes a function return a Promise
+        const products = await Product.find({})  // async makes a function return a Promise
                                                  //await makes a function wait for a Promise
         res.status(200).json({
             Totalproducts : products.length,   // length of the products in schema
@@ -56,6 +54,24 @@ router.get('/products', async (req,res) =>{
         res.status(400).send(error)
     } 
     })
+
+
+
+router.get('/getbyName/:name',async(req,res)=>{      
+    try{
+        const product= await Product.find({name:req.params.name})
+        if(!product){
+            res.status(404).send({error: "product not found"})
+        }
+        res.status(400).json({
+            Totalproducts:product.length,
+            product})
+    }catch(error){
+        res.status(401).json({error})
+        console.log(error)    //console .log outputs the message to web console
+    }
+});
+
 router.delete('/deleteProduct/:prodId' , async (req,res) => {
     const productid = req.params.prodId
   try{
@@ -72,7 +88,7 @@ router.delete('/deleteProduct/:prodId' , async (req,res) => {
 
 router.put('/editProduct/:id',async(req,res) => {
     const updates=Object.keys(req.body)   // keys will be stored in updates => req body field names.
-    const allowedUpdates= ['imgurl','prodId','name','description','qnt','price','color','size','thick','quality','region','date']  // updates that are allowed
+    const allowedUpdates= ['imgurl','prodId','name','description','qnt','price','color','size','thick','quality','region','date','manufacturername','PhoneNumber']  // updates that are allowed
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update)) // validating the written key in req.body with the allowedUpdates
     if(!isValidOperation) {
         return res.status(400).json({ error : 'invalid updates'})
